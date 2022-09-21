@@ -10,7 +10,7 @@ class Container {
       for (let i = 0; i < object.length; i++) {
         object[i].id = 1 + i;
       }
-      console.log(`Saved ${object.length} products!`);
+      return `Saved ${object.length} products!`;
       await fs.promises.writeFile(this.file, JSON.stringify(object));
     } catch (error) {
       throw new Error(error, 'Error al guardar el producto');
@@ -21,7 +21,7 @@ class Container {
     try {
       const content = await this.getAll();
       let idFound = content.find((prod) => prod.id === id);
-      console.log(idFound);
+      return idFound;
     } catch (error) {
       throw new Error(error, 'Error al obtener el producto por id');
     }
@@ -30,7 +30,7 @@ class Container {
   async getAll() {
     try {
       let content = await fs.promises.readFile(this.file, 'utf-8');
-      console.log(content);
+      return content;
       return JSON.parse(content);
     } catch (error) {
       throw new Error(error, 'Error al obtener todos los productos');
@@ -42,7 +42,7 @@ class Container {
       const content = await this.getAll();
       const deleted = content.filter((producto) => producto.id !== id);
       await fs.promises.writeFile(this.file, JSON.stringify(deleted, null, 4));
-      console.log('Deleted');
+      return 'Deleted';
     } catch (error) {
       throw new Error(error, 'Error to delete the product by id');
     }
@@ -51,7 +51,7 @@ class Container {
   async deleteAll() {
     try {
       await fs.promises.writeFile(this.file, []);
-      console.log('Todos los productos eliminados.');
+      return 'Todos los productos eliminados.';
     } catch (error) {
       throw new Error(error, 'Error al borrar todos los productos');
     }
