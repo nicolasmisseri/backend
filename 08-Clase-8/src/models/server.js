@@ -7,11 +7,8 @@ class Server {
     this.app = express();
     this.port = process.env.PORT;
     this.apiProductsPath = "/api/products";
-
  
     this.middlewares();
-
-
     this.routes();
   }
 
@@ -20,6 +17,7 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(express.static("public"));
+    
   }
 
   routes() {

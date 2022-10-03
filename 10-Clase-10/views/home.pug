@@ -1,0 +1,29 @@
+head
+  meta(charset='utf-8')
+  title Pug
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
+
+  body(style={margin: '2.5% 10%'})
+    h3 Pug
+    h1 Guardar Producto
+
+    form(role='form' method='POST' action='/pug/')
+        div.form-group
+        label(for='title') Nombre:
+        input.form-control(type='text', id='title' title='title' name='title')
+        div.form-group
+        label(for='price') Precio:
+        input.form-control(type='text', id='price' title='price' name='price')
+        div.form-group
+        label(for='thumbnail') Imagen:
+        input.form-control(type='text', id='thumbnail' title='thumbnail' name='thumbnail')
+        br
+        button.btn.btn-success(type="submit") Guardar
+    
+        br
+
+        if newProductSaved
+          p= `New product saved ! ${title} with the id of ${id}`
+    
+    form(role='form' method='GET' action='/pug/productos')
+        button.btn.btn-info(type="submit") Ver productos
