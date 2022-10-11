@@ -39,8 +39,23 @@ const server = http.createServer(app);
 
 export const io = new Server(server);
 io.on("connection", function (socket) {
+  socket.emit("products", products);
+  socket.on("update", (data) => {
+    products.push(data);
+    io.sockets.emit("products", products);
+  });
+
+  socket.emit("mensajes", mensajes);
+  socket.on("mensajes_nuevos", (data) => {
+    mensajes.push(data);
+    console.log(data);
+    io.sockets.emit("mensajes", mensajes);
+  });
+
   console.log("Conecta2");
 });
+const products = [];
+const mensajes = [];
 
 // app.listen(PORT, (err) => {
 //   if (err) console.log(err);
@@ -48,5 +63,5 @@ io.on("connection", function (socket) {
 // });
 
 server.listen(8080, () => {
-  console.log("listening on *:3000");
+  console.log("listening on *:8080");
 });

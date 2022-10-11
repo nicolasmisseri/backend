@@ -22,9 +22,9 @@ router.post("/", (req, res) => {
     );
   }
 
-  // emitir producto nuevo
+  // // emitir producto nuevo
 
-  io.emit("new_product", products[products.length - 1]);
+  // io.emit("new_product", products[products.length - 1]);
 
   res.render("home", {
     newProductSaved: true,
