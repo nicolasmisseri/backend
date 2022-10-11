@@ -1,4 +1,12 @@
-
+<script>
+            var productsRecibidos = [];
+            console.log('PRODUCTOS',productsRecibidos)
+            {{products.push}}
+            const socket = io.connect();
+            socket.on('new_product', data => {
+            console.log(data);
+            });
+</script>
 <h1>Products</h1>
 {{#if productsExist}}
     <table class='table'>
